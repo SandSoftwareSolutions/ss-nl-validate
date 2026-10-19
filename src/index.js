@@ -1,4 +1,5 @@
-const digits = (value) => (typeof value === "string" || typeof value === "number" ? String(value).replace(/[\s.\-]/g, "") : "");
+// A number must be a whole number (111222.333 is not the BSN 111222333); a string may contain spaces, dots and dashes.
+const digits = (value) => (typeof value === "string" ? value.replace(/[\s.\-]/g, "") : Number.isSafeInteger(value) && value >= 0 ? String(value) : "");
 
 /** BSN (burgerservicenummer): 9 digits that pass the "elfproef". Eight digits are read as having a leading zero. */
 export function isValidBsn(value) {
@@ -39,7 +40,8 @@ const IBAN_LENGTH = {
   PL: 28, PT: 25, IE: 22, FI: 18, GR: 27, CZ: 24, HU: 28
 };
 
-const ibanText = (value) => (typeof value === "string" ? value.replace(/\s/g, "").toUpperCase() : "");
+// ASCII letters and digits only: toUpperCase() would turn "ı" or "ß" into the ASCII letters I and SS and accept a text that is not an IBAN.
+const ibanText = (value) => (typeof value === "string" && !/[^A-Za-z0-9\s]/.test(value) ? value.replace(/\s/g, "").toUpperCase() : "");
 
 function mod97(text) {
   let rest = 0;

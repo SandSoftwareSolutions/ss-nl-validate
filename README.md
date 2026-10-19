@@ -22,7 +22,7 @@ parsePhoneNl("+31 (0)6 12345678");       // { e164: "+31612345678", kind: "mobil
 isValidBsn("111222333");                 // true
 ```
 
-Spaces, dots and dashes in the input are ignored. Anything that is not a string (or number, for numbers) is simply invalid; the functions never throw.
+Spaces, dots and dashes in a text are ignored (`isValidIban` ignores spaces only, and accepts ASCII letters and digits only). A number is accepted for BSN and KvK only when it is a whole number. Anything else that is not a string is simply invalid; the functions never throw.
 
 ## What each one checks
 
