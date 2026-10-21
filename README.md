@@ -10,6 +10,8 @@ Check the Dutch things you keep needing in forms and imports: BSN, IBAN, KvK num
 npm install @sandsoftwaresolutions/nl-validate
 ```
 
+Works with `import` and `require()`, and ships TypeScript types for both.
+
 ## Usage
 
 ```js
